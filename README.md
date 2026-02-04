@@ -1,3 +1,61 @@
-# TACache
-code for TACache
-Accelerating Rectified Flow Models  via Trajectory-Aware Caching
+<h1 align="center">Accelerating Rectified Flow Models  via Trajectory-Aware Caching</h1>
+
+<p align="center">
+  <a href="https://your-homepage.com">XiaoLiu</a>,
+  <a href="https://your-homepage.com">KaiLiu</a>,
+  <a href="https://your-homepage.com">Naiyang Guan</a>,
+  <a href="https://your-homepage.com">Honglang Lu</a>,
+  <a href="https://your-homepage.com">Zhixin Wang</a>,
+  <a href="https://your-homepage.com">Zhikai Chen</a>,
+  <a href="https://your-homepage.com">Renjing Pei</a>，
+  <a href="https://your-homepage.com">Linghe Kong</a>，
+  <a href="https://your-homepage.com">Yulun Zhang</a>
+</p>
+
+<p align="center">
+  <i>Conference/ArXiv Year</i>
+</p>
+
+<p align="center">
+  <img alt="downloads" src="https://img.shields.io/badge/downloads-YOUR_NUM-blue">
+  <img alt="visitors" src="https://img.shields.io/badge/visitors-YOUR_NUM-brightgreen">
+  <img alt="Stars" src="https://img.shields.io/github/stars/YOUR_ORG/YOUR_REPO?style=social">
+</p>
+
+<p align="center">
+  <a href="YOUR_PROJECT_PAGE_URL">[project]</a>
+  <a href="YOUR_ARXIV_URL">[arXiv]</a>
+  <a href="YOUR_SUPP_URL">[supplementary material]</a>
+  <a href="#datasets">[dataset]</a>
+  <a href="#pretrained-models">[pretrained models]</a>
+</p>
+
+---
+
+## 🔥 News
+- **2025-2-6:** Repo released.
+
+---
+
+## Abstract
+Diffusion models have emerged as a dominant paradigm in contemporary generative modeling.
+However, their deployment in the real world is severely constrained by the substantial latency inherent because of the multi-step iterative inference.
+One emerging solution is to reduce the temporal redundancy via time step skipping.
+Existing caching methods typically rely on selecting a subset of timesteps and reusing their computational outputs to approximate intermediate steps. 
+However, the accumulation errors in the skipped steps limit the speedup ratio.
+To address this challenge, we propose TACache, a novel acceleration-based caching framework.
+TACache follows the skip-then-compensation paradigm.
+To be specific, TACache follows an offline skipping schedule to perform step skipping.
+For the skipped steps, TACache leverages statistical acceleration information to compensate for the parallel and orthogonal directions.
+Extensive experiments on Text-to-Image (T2I) and Text-to-Video (T2V) models demonstrate that TACache achieves superior Pareto optimality in the trade-off between quality and speed compared to state-of-the-art methods.
+---
+
+## ✨ Pipeline
+
+
+---
+
+## 🚀 TODO
+
+
+##
