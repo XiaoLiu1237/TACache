@@ -2,14 +2,14 @@
 
 <p align="center">
   <a href="https://your-homepage.com">XiaoLiu</a>,
-  <a href="[https://your-homepage.com](https://kai-liu.cn/)">KaiLiu</a>,
+  <a href="https://kai-liu.cn/">KaiLiu</a>,
   <a href="https://your-homepage.com">Naiyang Guan</a>,
   <a href="https://your-homepage.com">Honglang Lu</a>,
-  <a href="https://your-homepage.com">Zhixin Wang</a>,
+  <a href="https://scholar.google.com/citations?user=tZS6bPMAAAAJ&hl=en&oi=sra">Zhixin Wang</a>,
   <a href="https://your-homepage.com">Zhikai Chen</a>,
-  <a href="https://your-homepage.com">Renjing Pei</a>，
-  <a href="https://your-homepage.com">Linghe Kong</a>，
-  <a href="https://your-homepage.com">Yulun Zhang</a>
+  <a href="https://scholar.google.com/citations?hl=en&user=zEEMPUUAAAAJ&view_op=list_works&sortby=pubdate">Renjing Pei</a>，
+  <a href="https://scholar.google.com/citations?hl=en&user=-wm2X-8AAAAJ&view_op=list_works&sortby=pubdate">Linghe Kong</a>，
+  <a href="https://yulunzhang.com/">Yulun Zhang</a>
 </p>
 
 <p align="center">
@@ -75,3 +75,6 @@ Extensive experiments on Text-to-Image (T2I) and Text-to-Video (T2V) models demo
 4. [Acknowledgements](#acknowledgements)
 
 ---
+
+## 📦 Results
+
