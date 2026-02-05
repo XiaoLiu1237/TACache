@@ -3,7 +3,7 @@
 <p align="center">
   <a href="https://your-homepage.com">XiaoLiu</a>,
   <a href="https://kai-liu.cn/">KaiLiu</a>,
-  <a href="https://your-homepage.com">Naiyang Guan</a>,
+  <a href="https://lukebird17.github.io/">Naiyang Guan</a>,
   <a href="https://your-homepage.com">Honglang Lu</a>,
   <a href="https://scholar.google.com/citations?user=tZS6bPMAAAAJ&hl=en&oi=sra">Zhixin Wang</a>,
   <a href="https://your-homepage.com">Zhikai Chen</a>,
@@ -56,7 +56,7 @@ Extensive experiments on Text-to-Image (T2I) and Text-to-Video (T2V) models demo
 
 ## ✨ Pipeline
 <p align="center">
-  <img src="assets/pipeline.png" width="92%">
+  <img src="asset/pipeline.png" width="92%">
 </p>
 
 
@@ -77,4 +77,19 @@ Extensive experiments on Text-to-Image (T2I) and Text-to-Video (T2V) models demo
 ---
 
 ## 📦 Results
+<p align="center">
+  <img src="asset/cover.pdf" width="92%">
+</p>
+<p align="center">
+  <img src="asset/pipeline.png" width="92%">
+</p>
+<p align="center">
+  <img src="asset/bagel.pdf" width="92%">
+</p>
+<p align="center">
+  <img src="asset/flux.pdf" width="92%">
+</p>
+<p align="center">
+  <img src="asset/wan.pdf" width="92%">
+</p>
 
