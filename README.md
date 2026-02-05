@@ -53,7 +53,7 @@ Extensive experiments on Text-to-Image (T2I) and Text-to-Video (T2V) models demo
 
 ## ✨ Pipeline
 <p align="center">
-  <img src="fig/pipeline.pdf" width="92%">
+  <img src="fig/overview.pdf" width="92%">
 </p>
 
 
