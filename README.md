@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://your-homepage.com">XiaoLiu</a>,
-  <a href="https://your-homepage.com">KaiLiu</a>,
+  <a href="[https://your-homepage.com](https://kai-liu.cn/)">KaiLiu</a>,
   <a href="https://your-homepage.com">Naiyang Guan</a>,
   <a href="https://your-homepage.com">Honglang Lu</a>,
   <a href="https://your-homepage.com">Zhixin Wang</a>,
@@ -38,7 +38,9 @@
 ---
 
 ## Abstract
-Diffusion models have emerged as a dominant paradigm in contemporary generative modeling.
+## Abstract
+> **Abstract:** 
+> Diffusion models have emerged as a dominant paradigm in contemporary generative modeling.
 However, their deployment in the real world is severely constrained by the substantial latency inherent because of the multi-step iterative inference.
 One emerging solution is to reduce the temporal redundancy via time step skipping.
 Existing caching methods typically rely on selecting a subset of timesteps and reusing their computational outputs to approximate intermediate steps. 
@@ -48,14 +50,28 @@ TACache follows the skip-then-compensation paradigm.
 To be specific, TACache follows an offline skipping schedule to perform step skipping.
 For the skipped steps, TACache leverages statistical acceleration information to compensate for the parallel and orthogonal directions.
 Extensive experiments on Text-to-Image (T2I) and Text-to-Video (T2V) models demonstrate that TACache achieves superior Pareto optimality in the trade-off between quality and speed compared to state-of-the-art methods.
+
+
 ---
 
 ## ✨ Pipeline
+<p align="center">
+  <img src="assets/pipeline.png" width="92%">
+</p>
 
 
 ---
 
 ## 🚀 TODO
+- [ ] Release the calibration dataset.
+- [ ] Release code.
 
+---
 
-##
+## 🔗 Contents
+1. [code](#code)
+2. [Results](#results)
+3. [Citation](#citation)
+4. [Acknowledgements](#acknowledgements)
+
+---
