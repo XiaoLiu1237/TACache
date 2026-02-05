@@ -23,11 +23,8 @@
 </p>
 
 <p align="center">
-  <a href="YOUR_PROJECT_PAGE_URL">[project]</a>
   <a href="YOUR_ARXIV_URL">[arXiv]</a>
   <a href="YOUR_SUPP_URL">[supplementary material]</a>
-  <a href="#datasets">[dataset]</a>
-  <a href="#pretrained-models">[pretrained models]</a>
 </p>
 
 ---
