@@ -53,7 +53,7 @@ Extensive experiments on Text-to-Image (T2I) and Text-to-Video (T2V) models demo
 
 ## ✨ Pipeline
 <p align="center">
-  <img src="asset/pipeline.png" width="92%">
+  <img src="assets/pipeline.pdf" width="92%">
 </p>
 
 
@@ -75,18 +75,15 @@ Extensive experiments on Text-to-Image (T2I) and Text-to-Video (T2V) models demo
 
 ## 📦 Results
 <p align="center">
-  <img src="asset/cover.pdf" width="92%">
+  <img src="assets/cover.pdf" width="92%">
 </p>
 <p align="center">
-  <img src="asset/pipeline.png" width="92%">
+  <img src="assets/bagel.pdf" width="92%">
 </p>
 <p align="center">
-  <img src="asset/bagel.pdf" width="92%">
+  <img src="assets/flux.pdf" width="92%">
 </p>
 <p align="center">
-  <img src="asset/flux.pdf" width="92%">
-</p>
-<p align="center">
-  <img src="asset/wan.pdf" width="92%">
+  <img src="assets/wan.pdf" width="92%">
 </p>
 
