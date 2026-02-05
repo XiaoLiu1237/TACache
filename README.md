@@ -3,8 +3,8 @@
 <p align="center">
   <a href="https://your-homepage.com">XiaoLiu</a>,
   <a href="https://kai-liu.cn/">KaiLiu</a>,
-  <a href="https://lukebird17.github.io/">Naiyang Guan</a>,
-  <a href="https://your-homepage.com">Honglang Lu</a>,
+  <a href="https://scholar.google.com/citations?user=TVyk3f0AAAAJ&hl=en">Naiyang Guan</a>,
+  <a href="https://lukebird17.github.io/">Honglang Lu</a>,
   <a href="https://scholar.google.com/citations?user=tZS6bPMAAAAJ&hl=en&oi=sra">Zhixin Wang</a>,
   <a href="https://your-homepage.com">Zhikai Chen</a>,
   <a href="https://scholar.google.com/citations?hl=en&user=zEEMPUUAAAAJ&view_op=list_works&sortby=pubdate">Renjing Pei</a>，
@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <i>Conference/ArXiv Year</i>
+  <i>ArXiv 2026</i>
 </p>
 
 <p align="center">
