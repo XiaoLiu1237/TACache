@@ -84,6 +84,6 @@ Extensive experiments on Text-to-Image (T2I) and Text-to-Video (T2V) models demo
   <img src="fig/flux.png" width="92%">
 </p>
 <p align="center">
-  <img src="assets/wan.png" width="92%">
+  <img src="fig/wan.png" width="92%">
 </p>
 
