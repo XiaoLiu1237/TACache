@@ -92,7 +92,7 @@ Extensive experiments on Text-to-Image (T2I) and Text-to-Video (T2V) models demo
 If you find this code helpful in your research or work, please consider citing:
 
 ```bibtex
-@article{your2026project,
+@article{tacache,
   title   = {A Trajectory-Decomposition Acceleration Method for Diffusion Inference},
   author  = {Liu, Xiao and Liu, Kai, and Guan, Naiyang and Lu, Honglang and Wang, Zhixin and Chen, Zhikai and Pei, Renjing and Kong, Linghe and Zhang, Yulun},
   journal = {arXiv},
