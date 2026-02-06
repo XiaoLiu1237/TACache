@@ -6,7 +6,7 @@
   <a href="https://scholar.google.com/citations?user=TVyk3f0AAAAJ&hl=en">Naiyang Guan</a>,
   <a href="https://lukebird17.github.io/">Honglang Lu</a>,
   <a href="https://scholar.google.com/citations?user=tZS6bPMAAAAJ&hl=en&oi=sra">Zhixin Wang</a>,
-  <a href="https://your-homepage.com">Zhikai Chen</a>,
+  <a>Zhikai Chen</a>,
   <a href="https://scholar.google.com/citations?hl=en&user=zEEMPUUAAAAJ&view_op=list_works&sortby=pubdate">Renjing Pei</a>，
   <a href="https://scholar.google.com/citations?hl=en&user=-wm2X-8AAAAJ&view_op=list_works&sortby=pubdate">Linghe Kong</a>，
   <a href="https://yulunzhang.com/">Yulun Zhang</a>
