@@ -1,7 +1,7 @@
 <h1 align="center">Accelerating Rectified Flow Models  via Trajectory-Aware Caching</h1>
 
 <p align="center">
-  <a href="https://your-homepage.com">XiaoLiu</a>,
+  <a href="https://github.com/XiaoLiu1237">XiaoLiu</a>,
   <a href="https://kai-liu.cn/">KaiLiu</a>,
   <a href="https://scholar.google.com/citations?user=TVyk3f0AAAAJ&hl=en">Naiyang Guan</a>,
   <a href="https://lukebird17.github.io/">Honglang Lu</a>,
