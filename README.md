@@ -17,9 +17,9 @@
 </p>
 
 <p align="center">
-  <img alt="downloads" src="https://img.shields.io/badge/downloads-YOUR_NUM-blue">
-  <img alt="visitors" src="https://img.shields.io/badge/visitors-YOUR_NUM-brightgreen">
-  <img alt="Stars" src="https://img.shields.io/github/stars/YOUR_ORG/YOUR_REPO?style=social">
+  <img alt="downloads" src="https://img.shields.io/github/downloads/XiaoLiu1237/TACache/total">
+  <img alt="visitors"  src="https://visitor-badge.laobi.icu/badge?page_id=XiaoLiu1237.TACache">
+  <img alt="Stars"     src="https://img.shields.io/github/stars/XiaoLiu1237/TACache?style=social">
 </p>
 
 <p align="center">
