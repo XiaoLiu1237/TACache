@@ -19,7 +19,7 @@
 <p align="center">
   <img alt="downloads" src="https://img.shields.io/github/downloads/XiaoLiu1237/TACache/total">
   <img alt="visitors"  src="https://visitor-badge.laobi.icu/badge?page_id=XiaoLiu1237.TACache">
-  <img alt="Stars"     src="https://img.shields.io/github/stars/XiaoLiu1237/TACache?style=social">
+  <img alt="Stars" src="https://img.shields.io/github/stars/XiaoLiu1237/TACache?style=social">
 </p>
 
 <p align="center">
