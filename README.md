@@ -1,15 +1,15 @@
 <h1 align="center">Accelerating Rectified Flow Models  via Trajectory-Aware Caching</h1>
 
 <p align="center">
-  <a href="https://github.com/XiaoLiu1237">XiaoLiu</a>,
-  <a href="https://kai-liu.cn/">KaiLiu</a>,
+  <a href="https://github.com/XiaoLiu1237">Xiao Liu</a>,
+  <a href="https://kai-liu.cn/">Kai Liu</a>,
   <a href="https://scholar.google.com/citations?user=TVyk3f0AAAAJ&hl=en">Naiyang Guan</a>,
   <a href="https://lukebird17.github.io/">Honglang Lu</a>,
   <a href="https://scholar.google.com/citations?user=tZS6bPMAAAAJ&hl=en&oi=sra">Zhixin Wang</a>,
   <a>Zhikai Chen</a>,
-  <a href="https://scholar.google.com/citations?hl=en&user=zEEMPUUAAAAJ&view_op=list_works&sortby=pubdate">Renjing Pei</a>，
-  <a href="https://scholar.google.com/citations?hl=en&user=-wm2X-8AAAAJ&view_op=list_works&sortby=pubdate">Linghe Kong</a>，
-  <a href="https://yulunzhang.com/">Yulun Zhang</a>
+  <a href="https://scholar.google.com/citations?hl=en&user=zEEMPUUAAAAJ&view_op=list_works&sortby=pubdate">Renjing Pei</a>,
+  <a href="https://scholar.google.com/citations?hl=en&user=-wm2X-8AAAAJ&view_op=list_works&sortby=pubdate">Linghe Kong</a>,
+  <a href="https://yulunzhang.com/">Yulun Zhang<sup>*</sup></a>
 </p>
 
 <p align="center">
@@ -69,7 +69,6 @@ Extensive experiments on Text-to-Image (T2I) and Text-to-Video (T2V) models demo
 1. [code](#code)
 2. [Results](#results)
 3. [Citation](#citation)
-4. [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -93,7 +92,7 @@ If you find this code helpful in your research or work, please consider citing:
 
 ```bibtex
 @article{tacache,
-  title   = {A Trajectory-Decomposition Acceleration Method for Diffusion Inference},
+  title   = {Accelerating Rectified Flow Models  via Trajectory-Aware Caching},
   author  = {Liu, Xiao and Liu, Kai, and Guan, Naiyang and Lu, Honglang and Wang, Zhixin and Chen, Zhikai and Pei, Renjing and Kong, Linghe and Zhang, Yulun},
   journal = {arXiv},
   year    = {2026},
