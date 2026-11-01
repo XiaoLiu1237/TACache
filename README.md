@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <i>ArXiv 2026</i>
+  <I>NeurIPS 2026</i>
 </p>
 
 <p align="center">
