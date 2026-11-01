@@ -35,19 +35,8 @@
 ---
 
 ## Abstract
-## Abstract
-> **Abstract:** 
-> Diffusion models have emerged as a dominant paradigm in contemporary generative modeling.
-However, their deployment in the real world is severely constrained by the substantial latency inherent because of the multi-step iterative inference.
-One emerging solution is to reduce the temporal redundancy via time step skipping.
-Existing caching methods typically rely on selecting a subset of timesteps and reusing their computational outputs to approximate intermediate steps. 
-However, the accumulation errors in the skipped steps limit the speedup ratio.
-To address this challenge, we propose TACache, a novel acceleration-based caching framework.
-TACache follows the skip-then-compensation paradigm.
-To be specific, TACache follows an offline skipping schedule to perform step skipping.
-For the skipped steps, TACache leverages statistical acceleration information to compensate for the parallel and orthogonal directions.
-Extensive experiments on Text-to-Image (T2I) and Text-to-Video (T2V) models demonstrate that TACache achieves superior Pareto optimality in the trade-off between quality and speed compared to state-of-the-art methods.
 
+> Diffusion and rectified flow (RF) models generate high-fidelity images and videos, but their iterative velocity-field evaluations are computationally expensive. Existing caching methods accelerate sampling by skipping timesteps, yet their coarse approximations introduce accumulated errors over long skip intervals and degrade quality under aggressive acceleration. We propose **TACache (Trajectory-Aware Cache)**, a training-free acceleration framework following a **skip-then-compensate** paradigm. TACache performs an orthogonal decomposition of discrete velocity acceleration along the RF trajectory into a parallel component and an orthogonal residual, isolating the magnitude and directional sources of per-step approximation error. The framework operates in two stages: *offline*, cumulative variation thresholds on the magnitude and direction indicators yield the skip schedule and bound how far each skip interval may extend; *online*, at each skipped step the offline statistics are combined with the sample's historical orthogonal direction to reconstruct the skipped velocity without additional model evaluations. Main comparisons on BAGEL, FLUX.1-dev, and Wan2.1-1.3B show that TACache achieves up to 4.11× speedup on text-to-image generation and 2.11× speedup on text-to-video generation, with consistent improvements over prior cache-based methods on all reference-based fidelity metrics.
 
 ---
 
