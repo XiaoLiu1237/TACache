@@ -30,7 +30,8 @@
 ---
 
 ## 🔥 News
-- **2025-2-6:** Repo released.
+- **2025-9-24:** TACache is accepted by NeurIPS 26! 🎉🎉🎉
+- **2025-2-6:** Repo released. ⭐️⭐️⭐️
 
 ---
 
