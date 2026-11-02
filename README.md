@@ -80,10 +80,12 @@
 If you find this code helpful in your research or work, please consider citing:
 
 ```bibtex
-@article{tacache,
-  title   = {Accelerating Rectified Flow Models  via Trajectory-Aware Caching},
-  author  = {Liu, Xiao and Liu, Kai, and Guan, Naiyang and Lu, Honglang and Wang, Zhixin and Chen, Zhikai and Pei, Renjing and Kong, Linghe and Zhang, Yulun},
-  journal = {arXiv},
-  year    = {2026},
-  note    = {arXiv:XXXX.XXXXX}
+@misc{liu2026acceleratingrectifiedflowmodels,
+      title={Accelerating Rectified Flow Models via Trajectory-Aware Caching}, 
+      author={Xiao Liu and Kai Liu and Naiyang Guan and Hongliang Lu and Zhixin Wang and Zhikai Chen and Renjing Pei and Yulun Zhang},
+      year={2026},
+      eprint={2605.16789},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2605.16789}, 
 }
