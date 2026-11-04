@@ -63,7 +63,7 @@
 
 ## 📦 Results
 <p align="center">
-  <img src="fig/cover.png" width="92%">
+  <img src="fig/cover.pdf" width="92%">
 </p>
 <p align="center">
   <img src="fig/bagel.png" width="92%">
