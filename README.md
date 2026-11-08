@@ -36,20 +36,20 @@ models/        checkpoint directory
 
 ## <a name="data-preparation"></a>🗂️ Data Preparation
 
-- **Calibration:** 30 prompts from [InternVid-10M-FLT](https://huggingface.co/datasets/OpenGVLab/InternVid). The experimental prompt set is included in [Wan2.1/inputs/calibration_prompts.txt](Wan2.1/inputs/calibration_prompts.txt); original videos are not needed.
-- **Evaluation:** [VBench](https://github.com/Vchitect/VBench) text prompts. Follow the [download instructions](REPRODUCE.md#evaluation-data) to place them in `data/vbench/`.
+- **Calibration:** [InternVid-10M-FLT](https://huggingface.co/datasets/OpenGVLab/InternVid). Prompts are included in [Wan2.1/inputs/calibration_prompts.txt](Wan2.1/inputs/calibration_prompts.txt).
+- **Evaluation:** Download the [VBench prompt lists](https://github.com/Vchitect/VBench/tree/master/prompts/prompts_per_dimension) into `data/vbench/`.
 
 ## <a name="testing"></a>🔨 Testing
 
-See [REPRODUCE.md](REPRODUCE.md) for installation and checkpoints. To reproduce the Wan2.1-1.3B setting in **Table 2 (TACache)**:
+[Installation and checkpoints](REPRODUCE.md#installation).
 
 ```bash
-# Calibrate on 30 InternVid prompts for Table 2
+# Calibration for Table 2 (Wan2.1-1.3B, TACache)
 python Wan2.1/run.py --mode calibrate \
   --prompts-file Wan2.1/inputs/calibration_prompts.txt \
   --outdir outputs/wan2_1/calibration
 
-# Generate evaluation videos for Table 2
+# Inference for Table 2
 for split in overall_consistency scene subject_consistency; do
   python Wan2.1/run.py --mode infer \
     --prompts-file "data/vbench/${split}.txt" \
@@ -58,20 +58,16 @@ for split in overall_consistency scene subject_consistency; do
 done
 ```
 
-Videos are saved in `outputs/wan2_1/vbench/`. See [evaluation settings](REPRODUCE.md#evaluation) for scoring. For a one-prompt workflow check, run `bash scripts/quickstart.sh "A small boat sailing on a calm lake."`.
-
 ## <a name="results"></a>🔎 Results
 
 ### 🎬 Wan2.1 · Text to video
-
-Original-model and TACache videos use the same prompt, seed and sampling settings.
 
 | Scene | Original model | TACache |
 | :--- | :---: | :---: |
 | Snow fox | [![Snow fox - original](assets/showcase/wan_fox_original.gif)](assets/showcase/wan_fox_original.mp4) | [![Snow fox - tacache](assets/showcase/wan_fox_tacache.gif)](assets/showcase/wan_fox_tacache.mp4) |
 | At the edge of the sea | [![At the edge of the sea - original](assets/showcase/wan_lighthouse_original.gif)](assets/showcase/wan_lighthouse_original.mp4) | [![At the edge of the sea - tacache](assets/showcase/wan_lighthouse_tacache.gif)](assets/showcase/wan_lighthouse_tacache.mp4) |
 
-Click a preview to open the video. [Prompts and settings](assets/showcase/prompts.json).
+[Prompts and settings](assets/showcase/prompts.json).
 
 ### 🖼️ BAGEL + TACache · Text to image
 
@@ -88,8 +84,6 @@ Click a preview to open the video. [Prompts and settings](assets/showcase/prompt
 ![Table 2: Text-to-video quality and efficiency on Wan2.1-1.3B](assets/table2_video_generation.png)
 
 ## <a name="citation"></a>📎 Citation
-
-If you find this code helpful in your research or work, please consider citing:
 
 ```bibtex
 @inproceedings{liu2026acceleratingrectifiedflowmodels,
