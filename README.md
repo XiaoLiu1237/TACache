@@ -32,6 +32,7 @@ Official implementation of **TACache**, accepted at **NeurIPS 2026**.
 tacache/       shared algorithm and calibration
 Wan2.1/        Wan sampling and model integration
 models/        checkpoint directory
+eval/          PSNR, SSIM and LPIPS evaluation
 ```
 
 ## <a name="data-preparation"></a>🗂️ Data Preparation
@@ -41,7 +42,7 @@ models/        checkpoint directory
 
 ## <a name="testing"></a>🔨 Testing
 
-See [REPRODUCE.md](REPRODUCE.md) for environment setup, checkpoints, datasets, and calibration/inference commands. After setting up the environment and checkpoint, run a quickstart:
+See [REPRODUCE.md](REPRODUCE.md) for environment setup, checkpoints, datasets, and calibration, inference, and evaluation commands. After setting up the environment and checkpoint, run a quickstart:
 
 ```bash
 bash scripts/quickstart.sh "A small boat sailing on a calm lake."

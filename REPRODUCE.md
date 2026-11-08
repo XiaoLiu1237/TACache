@@ -83,18 +83,18 @@ For a different calibration set, supply a UTF-8 text file with one prompt per li
 
 ## Evaluation
 
-Install the optional image-quality metrics with:
+Calculate PSNR, SSIM and LPIPS (AlexNet):
 
 ```bash
-python -m pip install -r requirements-eval.txt
+python -m pip install lpips==0.1.4 opencv-python==4.11.0.86
+
+# gt_video_dir: original-model videos
+# generated_video_dir: TACache videos
+python eval/metrics.py \
+  --gt_video_dir outputs/wan2_1/original \
+  --generated_video_dir outputs/wan2_1/vbench
 ```
 
-[VBench](https://github.com/Vchitect/VBench#usage) and [Q-Align](https://github.com/Q-Future/Q-Align) use separate environments. The Wan evaluation protocol is:
+Videos are paired by relative filename; `baseline_*.mp4` and `infer_*.mp4` are also matched by index. Use the same prompts and sampling settings for each pair. Results are saved to `outputs/metrics.json`.
 
-| Metric | Inputs |
-| --- | --- |
-| VBench | VBench 0.1.5 standard mode. |
-| PSNR / SSIM / LPIPS (AlexNet) | All 81 decoded frames, paired by prompt and frame index with matching reference videos. |
-| CLIP-IQA / Q-Align | Frames 0, 5, …, 80: 17 frames per video. |
-
-For fidelity and image-quality scores, average over frames within each video, then equally over videos. These commands reproduce the calibration and video-generation stage; scoring requires the corresponding metric setup and, for fidelity metrics, reference videos.
+For [VBench](https://github.com/Vchitect/VBench#usage), [CLIP-IQA](https://github.com/IceClear/CLIP-IQA), and [Q-Align](https://github.com/Q-Future/Q-Align), follow their official evaluation instructions.
