@@ -83,22 +83,24 @@ For a different calibration set, supply a UTF-8 text file with one prompt per li
 
 ## Evaluation
 
-See [eval/README.md](eval/README.md) for environment setup. Run from the repository root:
+See [eval/README.md](eval/README.md) to set up the shared scoring environment. Run from the repository root:
 
 ```bash
+conda activate tacache-eval
+
 # PSNR / SSIM / LPIPS (AlexNet)
-conda run -n tacache python eval/metrics.py \
+python eval/metrics.py \
   --gt_video_dir outputs/wan2_1/original \
   --generated_video_dir outputs/wan2_1/vbench
 
 # VBench
-conda run -n tacache-vbench python eval/vbench_eval.py --video_dir outputs/wan2_1/vbench
+python eval/vbench_eval.py --video_dir outputs/wan2_1/vbench
 
 # CLIP-IQA
-conda run -n tacache-clipiqa python eval/clipiqa.py --video_dir outputs/wan2_1/vbench
+python eval/clipiqa.py --video_dir outputs/wan2_1/vbench
 
 # Q-Align
-conda run -n tacache-qalign python eval/qalign.py --video_dir outputs/wan2_1/vbench
+python eval/qalign.py --video_dir outputs/wan2_1/vbench
 ```
 
 Use matching prompts and sampling settings for reference and generated videos.

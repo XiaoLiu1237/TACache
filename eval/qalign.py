@@ -2,6 +2,7 @@
 import argparse
 import json
 from pathlib import Path
+import sys
 
 import cv2
 from PIL import Image
@@ -19,7 +20,13 @@ def main():
     if not videos:
         parser.error(f"No MP4 videos found in {args.video_dir}")
 
-    from q_align import QAlignScorer
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "third_party/Q-Align"))
+    from q_align import QAlignScorer, MPLUGOwl2LlamaForCausalLM
+    from q_align.model.modeling_mplug_owl2 import MPLUGOwl2LlamaModel
+
+    # Keep the eager attention path used by the original Q-Align evaluation.
+    MPLUGOwl2LlamaForCausalLM._supports_sdpa = False
+    MPLUGOwl2LlamaModel._supports_sdpa = False
 
     torch.set_num_threads(1)
     scorer = QAlignScorer(pretrained=args.pretrained, device=args.device)
