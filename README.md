@@ -36,14 +36,14 @@
 
 ## ✨ Pipeline
 <p align="center">
-  <img src="asserts/overview.png" width="92%">
+  <img src="assets/overview.png" width="92%">
 </p>
 
 
 ---
 
 ## 🚀 TODO
-- [x] Release Wan2.1 calibration and inference code.
+- [x] Release TACache.
 
 ---
 
