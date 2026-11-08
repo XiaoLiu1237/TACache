@@ -95,4 +95,3 @@ We thank the authors of [Wan2.1](https://github.com/Wan-Video/Wan2.1) for their 
 
 Our code is released under the [Apache 2.0 License](LICENSE). The upstream Wan license is retained in [Wan2.1/LICENSE.txt](Wan2.1/LICENSE.txt).
 
-More backbones will be released.
