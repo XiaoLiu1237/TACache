@@ -20,10 +20,11 @@ Official implementation of **TACache**, accepted at **NeurIPS 2026**.
 ## 🔗 Contents
 
 1. [Codes](#codes)
-2. [Testing](#testing)
-3. [Results](#results)
-4. [Citation](#citation)
-5. [Acknowledgements](#acknowledgements)
+2. [Data Preparation](#data-preparation)
+3. [Testing](#testing)
+4. [Results](#results)
+5. [Citation](#citation)
+6. [Acknowledgements](#acknowledgements)
 
 ## <a name="codes"></a>💻 Codes
 
@@ -33,17 +34,31 @@ Wan2.1/        Wan sampling and model integration
 models/        checkpoint directory
 ```
 
+## <a name="data-preparation"></a>🗂️ Data Preparation
+
+- **Calibration:** 30 prompts from [InternVid-10M-FLT](https://huggingface.co/datasets/OpenGVLab/InternVid). The experimental prompt set is included in [Wan2.1/inputs/calibration_prompts.txt](Wan2.1/inputs/calibration_prompts.txt); original videos are not needed.
+- **Evaluation:** 251 [VBench](https://github.com/Vchitect/VBench) prompts: 93 overall-consistency, 86 scene, and 72 subject-consistency prompts. Follow the [download instructions](REPRODUCE.md#evaluation-data) to place them in `data/vbench/`.
+
 ## <a name="testing"></a>🔨 Testing
 
-See [REPRODUCE.md](REPRODUCE.md) for installation, checkpoints, calibration, inference, and evaluation.
-
-After setting up the environment and checkpoint, run:
+See [REPRODUCE.md](REPRODUCE.md) for installation and checkpoints. To reproduce the Wan2.1-1.3B setting in **Table 2 (TACache)**:
 
 ```bash
-bash scripts/quickstart.sh "A small boat sailing on a calm lake."
+# Calibrate on 30 InternVid prompts for Table 2
+CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode calibrate \
+  --prompts-file Wan2.1/inputs/calibration_prompts.txt \
+  --seed 0 --outdir outputs/wan2_1/calibration
+
+# Generate 251 evaluation videos for Table 2: 93 + 86 + 72
+for split in overall_consistency scene subject_consistency; do
+  CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode infer \
+    --prompts-file "data/vbench/${split}.txt" \
+    --skip-table outputs/wan2_1/calibration/tacache_skip_timestep.json \
+    --seed 0 --outdir "outputs/wan2_1/vbench/${split}"
+done
 ```
 
-This calibrates on one prompt, builds a skip table, and generates one TACache video. Outputs are saved to `outputs/quickstart/`.
+Videos are saved in `outputs/wan2_1/vbench/`. See [evaluation settings](REPRODUCE.md#evaluation) for scoring. For a one-prompt workflow check, run `bash scripts/quickstart.sh "A small boat sailing on a calm lake."`.
 
 ## <a name="results"></a>🔎 Results
 

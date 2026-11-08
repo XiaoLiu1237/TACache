@@ -31,48 +31,77 @@ The script calibrates on the supplied prompt, builds a skip table, and generates
 
 Additional Wan CLI options, such as `--checkpoint`, `--wan-root`, or `--seed`, apply to both stages. For full runs, use a representative calibration prompt set as described below.
 
-## Calibration and Inference
+## Data Preparation
 
-Run the commands below from the repository root. Calibration builds a skip table once; inference reuses that table for new prompts.
+### Calibration data
 
-### 1. Prepare calibration prompts
+For Wan2.1, we use **30 text prompts from [InternVid-10M-FLT](https://huggingface.co/datasets/OpenGVLab/InternVid)**, selected by aesthetic quality and prompt category as described in Appendix A. The exact prompts used in our experiments are provided in [Wan2.1/inputs/calibration_prompts.txt](Wan2.1/inputs/calibration_prompts.txt), one prompt per line.
 
-Create a UTF-8 file named `my_calibration_prompts.txt`, with one prompt per line:
+Use this file to reproduce the Wan setting in **Table 2**. Calibration only needs the captions; downloading the original InternVid videos is unnecessary. The skip table is generated locally by the calibration command below.
 
-```text
-A red fox walking through a snowy forest.
-A small boat sailing on a calm lake.
-```
+### Evaluation data
 
-These lines illustrate the file format. For your experiment, choose prompts that cover the subjects, scenes, and motion you want to generate. Calibration needs text prompts; reference images or videos are not required. Blank lines and lines starting with `#` are ignored.
-
-The quickstart uses one prompt to check the workflow. Use your representative calibration set for the following steps.
-
-### 2. Run calibration and build the table
+Download the original English prompt lists from [VBench](https://github.com/Vchitect/VBench). Run from the TACache repository root:
 
 ```bash
+mkdir -p data/vbench
+for split in overall_consistency scene subject_consistency; do
+  curl -fL "https://raw.githubusercontent.com/Vchitect/VBench/master/prompts/prompts_per_dimension/${split}.txt" \
+    -o "data/vbench/${split}.txt"
+done
+
+# VBench prompt metadata for evaluation
+curl -fL https://raw.githubusercontent.com/Vchitect/VBench/master/vbench/VBench_full_info.json \
+  -o data/vbench/VBench_full_info.json
+```
+
+The Wan experiment uses these three prompt lists to evaluate eight dimensions:
+
+| Prompt file in `data/vbench/` | Prompts | Evaluation dimensions |
+| --- | ---: | --- |
+| `overall_consistency.txt` | 93 | Overall consistency, aesthetic quality, imaging quality |
+| `scene.txt` | 86 | Scene, background consistency |
+| `subject_consistency.txt` | 72 | Subject consistency, dynamic degree, motion smoothness |
+| **Total** | **251** | **8 dimensions** |
+
+These are the original prompts, without prompt expansion. For text-to-video generation, download the text lists and generate the videos with TACache; VBench's example videos are not the evaluation inputs for this run.
+
+## Calibration and Inference
+
+The following commands use [Wan2.1/configs/default.json](Wan2.1/configs/default.json) for the Wan2.1-1.3B setting in **Table 2 (TACache)**. Run from the repository root.
+
+### Calibration
+
+```bash
+# Calibrate on 30 InternVid prompts for Table 2 (Wan2.1-1.3B, TACache)
 CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode calibrate \
-  --prompts-file my_calibration_prompts.txt \
+  --prompts-file Wan2.1/inputs/calibration_prompts.txt \
   --seed 0 \
   --outdir outputs/wan2_1/calibration
 ```
 
-This runs the model on every calibration prompt, records the velocity statistics, and automatically builds the skip table. You do not need to create or edit the table JSON yourself.
+After all 30 prompts finish, use `outputs/wan2_1/calibration/tacache_skip_timestep.json` for inference. Calibration records and generated calibration videos are saved alongside it.
 
-The calibration directory contains:
+### Evaluation video generation
 
-| File | Contents |
-| --- | --- |
-| `tacache_skip_timestep.json` | The skip table used by TACache inference. |
-| `tacache_calib_records.json` | Aggregated calibration records. |
-| `run_summary.json` | Generation settings and run statistics. |
-| `calibrate_0000.mp4`, ... | Videos generated during calibration, in prompt order. |
+```bash
+# Generate 251 evaluation videos for Table 2 (Wan2.1-1.3B, TACache): 93 + 86 + 72
+for split in overall_consistency scene subject_consistency; do
+  CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode infer \
+    --prompts-file "data/vbench/${split}.txt" \
+    --skip-table outputs/wan2_1/calibration/tacache_skip_timestep.json \
+    --seed 0 \
+    --outdir "outputs/wan2_1/vbench/${split}"
+done
+```
 
-Wait for calibration to finish before using its table; the table is updated as prompts are processed.
+Each directory contains `infer_0000.mp4`, `infer_0001.mp4`, etc., in prompt-file order, plus `run_summary.json`. Each prompt resets its generator to seed 0 independently. The 30 calibration videos are separate from the 251 evaluation videos.
 
-### 3. Generate a video with TACache
+The historical VBench run used five identical seed-0 repetitions per prompt (1,255 files). The commands above generate each of the 251 outputs once. For VBench standard-mode evaluation, map each output to `<prompt>-0.mp4` through `<prompt>-4.mp4` using copies or links; do not generate five different seeds.
 
-Pass the generated table through `--skip-table`:
+### Your own prompts
+
+For a single video, reuse the completed table:
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode infer \
@@ -82,34 +111,22 @@ CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode infer \
   --outdir outputs/wan2_1/inference
 ```
 
-The video is saved as `outputs/wan2_1/inference/infer_0000.mp4`, with its settings and run statistics in `run_summary.json`. The inference prompt can differ from the calibration prompts.
-
-To generate multiple videos, create `my_inference_prompts.txt` in the same one-prompt-per-line format and use `--prompts-file` instead of `--prompt`:
-
-```bash
-CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode infer \
-  --prompts-file my_inference_prompts.txt \
-  --skip-table outputs/wan2_1/calibration/tacache_skip_timestep.json \
-  --seed 0 \
-  --outdir outputs/wan2_1/inference_batch
-```
-
-Prompts are processed in file order, producing `infer_0000.mp4`, `infer_0001.mp4`, and so on. Each prompt uses the supplied seed independently.
-
-### 4. Keep calibration and inference settings aligned
-
-Both stages read [Wan2.1/configs/default.json](Wan2.1/configs/default.json). Command-line options override the JSON settings.
-
-For a custom setup, copy that file to `my_wan_config.json`, edit it, and pass `--config my_wan_config.json` to both commands. Set checkpoint and Wan source locations with `--checkpoint` and `--wan-root` when needed.
-
-Use the same checkpoint, sampling settings, seed, and TACache configuration when building and using a table. If you change these settings, rerun calibration to generate a matching table. You can reuse the completed table across different inference prompts with the same configuration.
+For a different calibration set, supply a UTF-8 text file with one prompt per line through `--prompts-file`. Keep the checkpoint, sampling settings, seed, and TACache configuration aligned between calibration and inference. To change the configuration, copy `Wan2.1/configs/default.json`, pass `--config your_config.json` to both stages, and recalibrate.
 
 ## Evaluation
 
-Optional metrics:
+Install the optional image-quality metrics with:
 
 ```bash
 python -m pip install -r requirements-eval.txt
 ```
 
-Includes LPIPS, PyIQA and CLIP-IQA. [VBench](https://github.com/Vchitect/VBench) and [Q-Align](https://github.com/Q-Future/Q-Align) require separate environments.
+[VBench](https://github.com/Vchitect/VBench#usage) and [Q-Align](https://github.com/Q-Future/Q-Align) use separate environments. The Wan evaluation protocol is:
+
+| Metric | Inputs |
+| --- | --- |
+| VBench | The eight dimensions and corresponding prompt groups listed above, using VBench 0.1.5 standard mode. |
+| PSNR / SSIM / LPIPS (AlexNet) | All 81 decoded frames, paired by prompt and frame index with matching reference videos. |
+| CLIP-IQA / Q-Align | Frames 0, 5, …, 80: 17 frames per video. |
+
+For fidelity and image-quality scores, average over frames within each video, then equally over the 251 videos. These commands reproduce the calibration and video-generation stage; scoring requires the corresponding metric setup and, for fidelity metrics, reference videos.
