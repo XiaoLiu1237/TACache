@@ -1,3 +1,7 @@
+# Copyright 2024-2025 The Alibaba Wan Team Authors. All rights reserved.
+# Licensed under Apache-2.0; see LICENSE.txt.
+# Modified for TACache: cache-aware sampling and video saving.
+
 """Wan sampling and blockwise TACache velocity prediction."""
 from contextlib import contextmanager
 from dataclasses import replace
