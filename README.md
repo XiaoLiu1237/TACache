@@ -77,16 +77,13 @@ Click a preview to open the video. [Prompts and settings](assets/showcase/prompt
 If you find this code helpful in your research or work, please consider citing:
 
 ```bibtex
-@misc{liu2026acceleratingrectifiedflowmodels,
-      title={Accelerating Rectified Flow Models via Trajectory-Aware Caching}, 
-      author={Xiao Liu and Kai Liu and Naiyang Guan and Hongliang Lu and Zhixin Wang and Zhikai Chen and Renjing Pei and Yulun Zhang},
-      year={2026},
-      eprint={2605.16789},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2605.16789}, 
+@inproceedings{liu2026acceleratingrectifiedflowmodels,
+  title={Accelerating Rectified Flow Models via Trajectory-Aware Caching},
+  author={Xiao Liu and Kai Liu and Naiyang Guan and Hongliang Lu and Zhixin Wang and Zhikai Chen and Renjing Pei and Yulun Zhang},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2026},
+  url={https://openreview.net/forum?id=ZFDg4T5AAg}
 }
-
 ```
 
 ## <a name="acknowledgements"></a>💡 Acknowledgements
