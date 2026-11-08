@@ -37,8 +37,6 @@ Additional Wan CLI options, such as `--checkpoint`, `--wan-root`, or `--seed`, a
 
 For Wan2.1, we use **30 text prompts from [InternVid-10M-FLT](https://huggingface.co/datasets/OpenGVLab/InternVid)**, selected by aesthetic quality and prompt category as described in Appendix A. The exact prompts used in our experiments are provided in [Wan2.1/inputs/calibration_prompts.txt](Wan2.1/inputs/calibration_prompts.txt), one prompt per line.
 
-Use this file to reproduce the Wan setting in **Table 2**. Calibration only needs the captions; downloading the original InternVid videos is unnecessary. The skip table is generated locally by the calibration command below.
-
 ### Evaluation data
 
 Download the [VBench evaluation prompts](https://github.com/Vchitect/VBench/tree/master/prompts/prompts_per_dimension) and place the `.txt` files in `data/vbench/`.
@@ -51,7 +49,7 @@ The following commands use [Wan2.1/configs/default.json](Wan2.1/configs/default.
 
 ```bash
 # Calibrate on 30 InternVid prompts for Table 2 (Wan2.1-1.3B, TACache)
-CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode calibrate \
+python Wan2.1/run.py --mode calibrate \
   --prompts-file Wan2.1/inputs/calibration_prompts.txt \
   --outdir outputs/wan2_1/calibration
 ```
@@ -63,7 +61,7 @@ After all 30 prompts finish, use `outputs/wan2_1/calibration/tacache_skip_timest
 ```bash
 # Generate evaluation videos for Table 2 (Wan2.1-1.3B, TACache)
 for split in overall_consistency scene subject_consistency; do
-  CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode infer \
+  python Wan2.1/run.py --mode infer \
     --prompts-file "data/vbench/${split}.txt" \
     --skip-table outputs/wan2_1/calibration/tacache_skip_timestep.json \
       --outdir "outputs/wan2_1/vbench/${split}"
@@ -79,7 +77,7 @@ For VBench standard-mode evaluation, link each seed-0 output to `<prompt>-0.mp4`
 For a single video, reuse the completed table:
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode infer \
+python Wan2.1/run.py --mode infer \
   --prompt "A small boat on a calm lake at sunrise, cinematic." \
   --skip-table outputs/wan2_1/calibration/tacache_skip_timestep.json \
   --outdir outputs/wan2_1/inference
