@@ -41,21 +41,10 @@ models/        checkpoint directory
 
 ## <a name="testing"></a>🔨 Testing
 
-[Installation and checkpoints](REPRODUCE.md#installation).
+See [REPRODUCE.md](REPRODUCE.md) for environment setup, checkpoints, datasets, and calibration/inference commands. After setting up the environment and checkpoint, run a quickstart:
 
 ```bash
-# Calibration for Table 2 (Wan2.1-1.3B, TACache)
-python Wan2.1/run.py --mode calibrate \
-  --prompts-file Wan2.1/inputs/calibration_prompts.txt \
-  --outdir outputs/wan2_1/calibration
-
-# Inference for Table 2
-for split in overall_consistency scene subject_consistency; do
-  python Wan2.1/run.py --mode infer \
-    --prompts-file "data/vbench/${split}.txt" \
-    --skip-table outputs/wan2_1/calibration/tacache_skip_timestep.json \
-    --outdir "outputs/wan2_1/vbench/${split}"
-done
+bash scripts/quickstart.sh "A small boat sailing on a calm lake."
 ```
 
 ## <a name="results"></a>🔎 Results
