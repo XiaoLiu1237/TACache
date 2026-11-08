@@ -37,7 +37,7 @@ models/        checkpoint directory
 ## <a name="data-preparation"></a>🗂️ Data Preparation
 
 - **Calibration:** 30 prompts from [InternVid-10M-FLT](https://huggingface.co/datasets/OpenGVLab/InternVid). The experimental prompt set is included in [Wan2.1/inputs/calibration_prompts.txt](Wan2.1/inputs/calibration_prompts.txt); original videos are not needed.
-- **Evaluation:** 251 [VBench](https://github.com/Vchitect/VBench) prompts: 93 overall-consistency, 86 scene, and 72 subject-consistency prompts. Follow the [download instructions](REPRODUCE.md#evaluation-data) to place them in `data/vbench/`.
+- **Evaluation:** [VBench](https://github.com/Vchitect/VBench) text prompts. Follow the [download instructions](REPRODUCE.md#evaluation-data) to place them in `data/vbench/`.
 
 ## <a name="testing"></a>🔨 Testing
 
@@ -49,7 +49,7 @@ CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode calibrate \
   --prompts-file Wan2.1/inputs/calibration_prompts.txt \
   --seed 0 --outdir outputs/wan2_1/calibration
 
-# Generate 251 evaluation videos for Table 2: 93 + 86 + 72
+# Generate evaluation videos for Table 2
 for split in overall_consistency scene subject_consistency; do
   CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode infer \
     --prompts-file "data/vbench/${split}.txt" \

@@ -57,12 +57,11 @@ curl -fL https://raw.githubusercontent.com/Vchitect/VBench/master/vbench/VBench_
 
 The Wan experiment uses these three prompt lists to evaluate eight dimensions:
 
-| Prompt file in `data/vbench/` | Prompts | Evaluation dimensions |
-| --- | ---: | --- |
-| `overall_consistency.txt` | 93 | Overall consistency, aesthetic quality, imaging quality |
-| `scene.txt` | 86 | Scene, background consistency |
-| `subject_consistency.txt` | 72 | Subject consistency, dynamic degree, motion smoothness |
-| **Total** | **251** | **8 dimensions** |
+| Prompt file in `data/vbench/` | Evaluation dimensions |
+| --- | --- |
+| `overall_consistency.txt` | Overall consistency, aesthetic quality, imaging quality |
+| `scene.txt` | Scene, background consistency |
+| `subject_consistency.txt` | Subject consistency, dynamic degree, motion smoothness |
 
 These are the original prompts, without prompt expansion. For text-to-video generation, download the text lists and generate the videos with TACache; VBench's example videos are not the evaluation inputs for this run.
 
@@ -85,7 +84,7 @@ After all 30 prompts finish, use `outputs/wan2_1/calibration/tacache_skip_timest
 ### Evaluation video generation
 
 ```bash
-# Generate 251 evaluation videos for Table 2 (Wan2.1-1.3B, TACache): 93 + 86 + 72
+# Generate evaluation videos for Table 2 (Wan2.1-1.3B, TACache)
 for split in overall_consistency scene subject_consistency; do
   CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode infer \
     --prompts-file "data/vbench/${split}.txt" \
@@ -95,9 +94,9 @@ for split in overall_consistency scene subject_consistency; do
 done
 ```
 
-Each directory contains `infer_0000.mp4`, `infer_0001.mp4`, etc., in prompt-file order, plus `run_summary.json`. Each prompt resets its generator to seed 0 independently. The 30 calibration videos are separate from the 251 evaluation videos.
+Each directory contains `infer_0000.mp4`, `infer_0001.mp4`, etc., in prompt-file order, plus `run_summary.json`. Each prompt resets its generator to seed 0 independently. Calibration and evaluation outputs are saved separately.
 
-The historical VBench run used five identical seed-0 repetitions per prompt (1,255 files). The commands above generate each of the 251 outputs once. For VBench standard-mode evaluation, map each output to `<prompt>-0.mp4` through `<prompt>-4.mp4` using copies or links; do not generate five different seeds.
+For VBench standard-mode evaluation, link each seed-0 output to `<prompt>-0.mp4` through `<prompt>-4.mp4` to match the evaluation protocol.
 
 ### Your own prompts
 
@@ -129,4 +128,4 @@ python -m pip install -r requirements-eval.txt
 | PSNR / SSIM / LPIPS (AlexNet) | All 81 decoded frames, paired by prompt and frame index with matching reference videos. |
 | CLIP-IQA / Q-Align | Frames 0, 5, …, 80: 17 frames per video. |
 
-For fidelity and image-quality scores, average over frames within each video, then equally over the 251 videos. These commands reproduce the calibration and video-generation stage; scoring requires the corresponding metric setup and, for fidelity metrics, reference videos.
+For fidelity and image-quality scores, average over frames within each video, then equally over videos. These commands reproduce the calibration and video-generation stage; scoring requires the corresponding metric setup and, for fidelity metrics, reference videos.
