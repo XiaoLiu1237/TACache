@@ -47,14 +47,14 @@ See [REPRODUCE.md](REPRODUCE.md) for installation and checkpoints. To reproduce 
 # Calibrate on 30 InternVid prompts for Table 2
 CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode calibrate \
   --prompts-file Wan2.1/inputs/calibration_prompts.txt \
-  --seed 0 --outdir outputs/wan2_1/calibration
+  --outdir outputs/wan2_1/calibration
 
 # Generate evaluation videos for Table 2
 for split in overall_consistency scene subject_consistency; do
   CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode infer \
     --prompts-file "data/vbench/${split}.txt" \
     --skip-table outputs/wan2_1/calibration/tacache_skip_timestep.json \
-    --seed 0 --outdir "outputs/wan2_1/vbench/${split}"
+    --outdir "outputs/wan2_1/vbench/${split}"
 done
 ```
 

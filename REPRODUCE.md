@@ -41,29 +41,7 @@ Use this file to reproduce the Wan setting in **Table 2**. Calibration only need
 
 ### Evaluation data
 
-Download the original English prompt lists from [VBench](https://github.com/Vchitect/VBench). Run from the TACache repository root:
-
-```bash
-mkdir -p data/vbench
-for split in overall_consistency scene subject_consistency; do
-  curl -fL "https://raw.githubusercontent.com/Vchitect/VBench/master/prompts/prompts_per_dimension/${split}.txt" \
-    -o "data/vbench/${split}.txt"
-done
-
-# VBench prompt metadata for evaluation
-curl -fL https://raw.githubusercontent.com/Vchitect/VBench/master/vbench/VBench_full_info.json \
-  -o data/vbench/VBench_full_info.json
-```
-
-The Wan experiment uses these three prompt lists to evaluate eight dimensions:
-
-| Prompt file in `data/vbench/` | Evaluation dimensions |
-| --- | --- |
-| `overall_consistency.txt` | Overall consistency, aesthetic quality, imaging quality |
-| `scene.txt` | Scene, background consistency |
-| `subject_consistency.txt` | Subject consistency, dynamic degree, motion smoothness |
-
-These are the original prompts, without prompt expansion. For text-to-video generation, download the text lists and generate the videos with TACache; VBench's example videos are not the evaluation inputs for this run.
+Download the [VBench evaluation prompts](https://github.com/Vchitect/VBench/tree/master/prompts/prompts_per_dimension) and place the `.txt` files in `data/vbench/`.
 
 ## Calibration and Inference
 
@@ -75,7 +53,6 @@ The following commands use [Wan2.1/configs/default.json](Wan2.1/configs/default.
 # Calibrate on 30 InternVid prompts for Table 2 (Wan2.1-1.3B, TACache)
 CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode calibrate \
   --prompts-file Wan2.1/inputs/calibration_prompts.txt \
-  --seed 0 \
   --outdir outputs/wan2_1/calibration
 ```
 
@@ -89,8 +66,7 @@ for split in overall_consistency scene subject_consistency; do
   CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode infer \
     --prompts-file "data/vbench/${split}.txt" \
     --skip-table outputs/wan2_1/calibration/tacache_skip_timestep.json \
-    --seed 0 \
-    --outdir "outputs/wan2_1/vbench/${split}"
+      --outdir "outputs/wan2_1/vbench/${split}"
 done
 ```
 
@@ -106,7 +82,6 @@ For a single video, reuse the completed table:
 CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode infer \
   --prompt "A small boat on a calm lake at sunrise, cinematic." \
   --skip-table outputs/wan2_1/calibration/tacache_skip_timestep.json \
-  --seed 0 \
   --outdir outputs/wan2_1/inference
 ```
 
@@ -124,7 +99,7 @@ python -m pip install -r requirements-eval.txt
 
 | Metric | Inputs |
 | --- | --- |
-| VBench | The eight dimensions and corresponding prompt groups listed above, using VBench 0.1.5 standard mode. |
+| VBench | VBench 0.1.5 standard mode. |
 | PSNR / SSIM / LPIPS (AlexNet) | All 81 decoded frames, paired by prompt and frame index with matching reference videos. |
 | CLIP-IQA / Q-Align | Frames 0, 5, …, 80: 17 frames per video. |
 
