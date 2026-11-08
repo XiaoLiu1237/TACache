@@ -1,0 +1,18 @@
+{
+  "checkpoint": "models/Wan2.1-T2V-1.3B",
+  "seed": 0,
+  "steps": 50,
+  "task": "t2v-1.3B",
+  "size": "832*480",
+  "frames": 81,
+  "guidance": 5.0,
+  "shift": 5.0,
+  "solver": "unipc",
+  "tacache": {
+    "tau_k": 0.03,
+    "tau_theta": 0.3,
+    "h_cap": 3,
+    "lambda_std": 1.0,
+    "t_blocks": 5
+  }
+}

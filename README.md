@@ -36,14 +36,14 @@
 
 ## ✨ Pipeline
 <p align="center">
-  <img src="fig/overview.png" width="92%">
+  <img src="asserts/overview.png" width="92%">
 </p>
 
 
 ---
 
 ## 🚀 TODO
-- [ ] Release code.
+- [x] Release Wan2.1 calibration and inference code.
 
 ---
 
@@ -80,8 +80,6 @@ tests/         core regression tests
 ```
 
 ## Installation
-
-Code release is in progress; the following commands apply to the upcoming release.
 
 Requires Python 3.10 and an NVIDIA CUDA GPU.
 
