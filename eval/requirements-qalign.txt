@@ -1,0 +1,3 @@
+numpy<2
+opencv-python==4.11.0.86
+q-align @ git+https://github.com/Q-Future/Q-Align.git@14dfdffb3b970c0727d48938b8f3741a65acbd6e

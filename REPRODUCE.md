@@ -83,66 +83,22 @@ For a different calibration set, supply a UTF-8 text file with one prompt per li
 
 ## Evaluation
 
-Calculate PSNR, SSIM and LPIPS (AlexNet):
+See [eval/README.md](eval/README.md) for environment setup. Run from the repository root:
 
 ```bash
-python -m pip install lpips==0.1.4 opencv-python==4.11.0.86
-
-# gt_video_dir: original-model videos
-# generated_video_dir: TACache videos
-python eval/metrics.py \
+# PSNR / SSIM / LPIPS (AlexNet)
+conda run -n tacache python eval/metrics.py \
   --gt_video_dir outputs/wan2_1/original \
   --generated_video_dir outputs/wan2_1/vbench
+
+# VBench
+conda run -n tacache-vbench python eval/vbench_eval.py --video_dir outputs/wan2_1/vbench
+
+# CLIP-IQA
+conda run -n tacache-clipiqa python eval/clipiqa.py --video_dir outputs/wan2_1/vbench
+
+# Q-Align
+conda run -n tacache-qalign python eval/qalign.py --video_dir outputs/wan2_1/vbench
 ```
 
-Videos are paired by relative filename; `baseline_*.mp4` and `infer_*.mp4` are also matched by index. Use the same prompts and sampling settings for each pair. Results are saved to `outputs/metrics.json`.
-
-### VBench
-
-Use a separate environment for [VBench](https://github.com/Vchitect/VBench#usage):
-
-```bash
-conda create -n tacache-vbench python=3.10 -y
-conda activate tacache-vbench
-python -m pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu121
-python -m pip install vbench==0.1.5 pyiqa==0.1.10 opencv-python==4.11.0.86
-
-python eval/vbench_eval.py --video_dir outputs/wan2_1/vbench
-```
-
-The script evaluates the three prompt groups generated above and reports the eight-dimension score for Table 2.
-
-### CLIP-IQA
-
-Install the [official CLIP-IQA implementation](https://github.com/IceClear/CLIP-IQA) in a separate environment:
-
-```bash
-conda create -n tacache-clipiqa python=3.10 -y
-conda activate tacache-clipiqa
-python -m pip install torch==2.1.2 torchvision==0.16.2 --index-url https://download.pytorch.org/whl/cu121
-python -m pip install "numpy<2" mmcv-full==1.7.2 ftfy regex tqdm einops pandas opencv-python==4.11.0.86
-git clone https://github.com/IceClear/CLIP-IQA.git third_party/CLIP-IQA
-git -C third_party/CLIP-IQA checkout 061fd3c7b1b40839959777897c764792760d693c
-python -m pip install -e third_party/CLIP-IQA
-
-python eval/clipiqa.py --video_dir outputs/wan2_1/vbench
-```
-
-MMCV may require compilation with a CUDA toolkit. CLIP-IQA uses the official Good-photo probability.
-
-### Q-Align
-
-Install [Q-Align](https://github.com/Q-Future/Q-Align) in its own environment:
-
-```bash
-conda create -n tacache-qalign python=3.10 -y
-conda activate tacache-qalign
-python -m pip install "numpy<2" opencv-python==4.11.0.86
-python -m pip install git+https://github.com/Q-Future/Q-Align.git@14dfdffb3b970c0727d48938b8f3741a65acbd6e
-
-python eval/qalign.py --video_dir outputs/wan2_1/vbench
-```
-
-The [OneAlign checkpoint](https://huggingface.co/q-future/one-align) is downloaded on first use. For a local checkpoint, pass `--pretrained path/to/one-align`.
-
-CLIP-IQA and Q-Align sample every fifth frame, then average over frames within each video and equally over videos.
+Use matching prompts and sampling settings for reference and generated videos.

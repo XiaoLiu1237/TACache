@@ -1,0 +1,10 @@
+# Install PyTorch first; see eval/README.md.
+numpy<2
+mmcv-full==1.7.2
+ftfy
+regex
+tqdm
+einops
+pandas
+opencv-python==4.11.0.86
+-e ./third_party/CLIP-IQA
