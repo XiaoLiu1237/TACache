@@ -68,10 +68,6 @@ for split in overall_consistency scene subject_consistency; do
 done
 ```
 
-Each directory contains `infer_0000.mp4`, `infer_0001.mp4`, etc., in prompt-file order, plus `run_summary.json`. Each prompt resets its generator to seed 0 independently. Calibration and evaluation outputs are saved separately.
-
-For VBench standard-mode evaluation, link each seed-0 output to `<prompt>-0.mp4` through `<prompt>-4.mp4` to match the evaluation protocol.
-
 ### Your own prompts
 
 For a single video, reuse the completed table:
