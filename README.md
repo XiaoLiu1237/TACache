@@ -1,10 +1,10 @@
-# [NeurIPS 2026] Accelerating Rectified Flow Models via Trajectory-Aware Caching
+# 🏆 [NeurIPS 2026] Accelerating Rectified Flow Models via Trajectory-Aware Caching
 
 Official implementation of **TACache**, accepted at **NeurIPS 2026**.
 
 [Xiao Liu](https://github.com/XiaoLiu1237), [Kai Liu](https://kai-liu.cn/), [Naiyang Guan](https://scholar.google.com/citations?user=TVyk3f0AAAAJ&hl=en), [Hongliang Lu](https://lukebird17.github.io/), [Zhixin Wang](https://scholar.google.com/citations?user=tZS6bPMAAAAJ&hl=en&oi=sra), Zhikai Chen, [Renjing Pei](https://scholar.google.com/citations?hl=en&user=zEEMPUUAAAAJ&view_op=list_works&sortby=pubdate), [Yulun Zhang](https://yulunzhang.com/)<sup>*</sup>
 
-[Paper](https://arxiv.org/abs/2605.16789) · [Implementation](tacache/) · [Reproduction](REPRODUCE.md)
+[📄 Paper](https://arxiv.org/abs/2605.16789) · [💻 Implementation](tacache/) · [🔁 Reproduction](REPRODUCE.md)
 
 #### 🔥 News
 
@@ -36,6 +36,14 @@ models/        checkpoint directory
 ## <a name="testing"></a>🔨 Testing
 
 See [REPRODUCE.md](REPRODUCE.md) for installation, checkpoints, calibration, inference, and evaluation.
+
+After setting up the environment and checkpoint, run:
+
+```bash
+bash scripts/quickstart.sh "A small boat sailing on a calm lake."
+```
+
+This calibrates on one prompt, builds a skip table, and generates one TACache video. Outputs are saved to `outputs/quickstart/`.
 
 ## <a name="results"></a>🔎 Results
 

@@ -21,6 +21,16 @@ git -C Wan2.1/Wan2.1 checkout ae487cc653b4a1791fec8201af20d2102a2514f3
 
 For an existing checkout, use `--wan-root`. Download the [checkpoint](https://github.com/Wan-Video/Wan2.1) into `models/Wan2.1-T2V-1.3B/`.
 
+## Quickstart
+
+```bash
+bash scripts/quickstart.sh "A small boat sailing on a calm lake."
+```
+
+The script calibrates on the supplied prompt, builds a skip table, and generates one TACache video in `outputs/quickstart/inference/`. The calibration files are saved in `outputs/quickstart/calibration/`.
+
+Additional Wan CLI options, such as `--checkpoint`, `--wan-root`, or `--seed`, apply to both stages. For full runs, use a representative calibration prompt set as described below.
+
 ## Calibration and Inference
 
 Create `my_calibration_prompts.txt` with one representative prompt per line:
