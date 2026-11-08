@@ -1,15 +1,15 @@
 # 🏆 [NeurIPS 2026] Accelerating Rectified Flow Models via Trajectory-Aware Caching
 
-Official implementation of **TACache**, accepted at **NeurIPS 2026**.
-
 [Xiao Liu](https://github.com/XiaoLiu1237), [Kai Liu](https://kai-liu.cn/), [Naiyang Guan](https://scholar.google.com/citations?user=TVyk3f0AAAAJ&hl=en), [Hongliang Lu](https://lukebird17.github.io/), [Zhixin Wang](https://scholar.google.com/citations?user=tZS6bPMAAAAJ&hl=en&oi=sra), Zhikai Chen, [Renjing Pei](https://scholar.google.com/citations?hl=en&user=zEEMPUUAAAAJ&view_op=list_works&sortby=pubdate), [Yulun Zhang](https://yulunzhang.com/)<sup>*</sup>
 
-[📄 Paper](https://arxiv.org/abs/2605.16789) · [💻 Implementation](tacache/) · [🔁 Reproduction](REPRODUCE.md)
+[![Downloads](https://img.shields.io/badge/downloads-ZIP-green.svg)](https://github.com/XiaoLiu1237/TACache/archive/refs/heads/main.zip)
+[![Visitors](https://visitor-badge.laobi.icu/badge?page_id=XiaoLiu1237.TACache)](https://github.com/XiaoLiu1237/TACache)
+[![GitHub Stars](https://img.shields.io/github/stars/XiaoLiu1237/TACache.svg?style=social)](https://github.com/XiaoLiu1237/TACache/stargazers)
 
 #### 🔥 News
 
-- **2026-11-04:** The updated paper is available on [arXiv](https://arxiv.org/abs/2605.16789v2).
-- **2026:** TACache is accepted at NeurIPS 2026.
+- **2026-11-08:** The code is released.
+- **2026-09-24:** TACache is accepted at NeurIPS 2026.
 
 ---
 
@@ -32,7 +32,7 @@ Official implementation of **TACache**, accepted at **NeurIPS 2026**.
 tacache/       shared algorithm and calibration
 Wan2.1/        Wan sampling and model integration
 models/        checkpoint directory
-eval/          PSNR, SSIM and LPIPS evaluation
+eval/          video quality evaluation
 ```
 
 ## <a name="data-preparation"></a>🗂️ Data Preparation
