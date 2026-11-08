@@ -34,12 +34,6 @@
 
 ---
 
-## Abstract
-
-> Diffusion and rectified flow (RF) models generate high-fidelity images and videos, but their iterative velocity-field evaluations are computationally expensive. Existing caching methods accelerate sampling by skipping timesteps, yet their coarse approximations introduce accumulated errors over long skip intervals and degrade quality under aggressive acceleration. We propose **TACache (Trajectory-Aware Cache)**, a training-free acceleration framework following a **skip-then-compensate** paradigm. TACache performs an orthogonal decomposition of discrete velocity acceleration along the RF trajectory into a parallel component and an orthogonal residual, isolating the magnitude and directional sources of per-step approximation error. The framework operates in two stages: *offline*, cumulative variation thresholds on the magnitude and direction indicators yield the skip schedule and bound how far each skip interval may extend; *online*, at each skipped step the offline statistics are combined with the sample's historical orthogonal direction to reconstruct the skipped velocity without additional model evaluations. Main comparisons on BAGEL, FLUX.1-dev, and Wan2.1-1.3B show that TACache achieves up to 4.11× speedup on text-to-image generation and 2.11× speedup on text-to-video generation, with consistent improvements over prior cache-based methods on all reference-based fidelity metrics.
-
----
-
 ## ✨ Pipeline
 <p align="center">
   <img src="fig/overview.png" width="92%">
@@ -49,33 +43,99 @@
 ---
 
 ## 🚀 TODO
-- [ ] Release the calibration dataset.
 - [ ] Release code.
 
 ---
 
-## 🔗 Contents
-1. [code](#code)
-2. [Results](#results)
-3. [Citation](#citation)
+## Contents
+
+1. [Results](#results)
+2. [Installation](#installation)
+3. [Evaluation](#evaluation)
+4. [Calibration and Inference](#calibration-and-inference)
+5. [Citation](#citation)
 
 ---
 
-## 📦 Results
-<p align="center">
-  <img src="fig/cover.png" width="92%">
-</p>
-<p align="center">
-  <img src="fig/bagel.png" width="92%">
-</p>
-<p align="center">
-  <img src="fig/flux.png" width="92%">
-</p>
-<p align="center">
-  <img src="fig/wan.png" width="92%">
-</p>
+## Results
 
-## 📎 Citation
+**Wan2.1 · Text to video**
+
+Original-model and TACache videos use the same prompt, seed and sampling settings.
+
+| Scene | Original model | TACache |
+| :--- | :---: | :---: |
+| Snow fox | [![Snow fox - original](assets/showcase/wan_fox_original.gif)](assets/showcase/wan_fox_original.mp4) | [![Snow fox - tacache](assets/showcase/wan_fox_tacache.gif)](assets/showcase/wan_fox_tacache.mp4) |
+| At the edge of the sea | [![At the edge of the sea - original](assets/showcase/wan_lighthouse_original.gif)](assets/showcase/wan_lighthouse_original.mp4) | [![At the edge of the sea - tacache](assets/showcase/wan_lighthouse_tacache.gif)](assets/showcase/wan_lighthouse_tacache.mp4) |
+
+Click a preview to open the video. [Prompts and settings](assets/showcase/prompts.json).
+
+## Layout
+
+```text
+tacache/       shared algorithm and calibration
+Wan2.1/        Wan sampling and model integration
+models/        checkpoint directory
+tests/         core regression tests
+```
+
+## Installation
+
+Code release is in progress; the following commands apply to the upcoming release.
+
+Requires Python 3.10 and an NVIDIA CUDA GPU.
+
+```bash
+conda create -n tacache python=3.10 -y
+conda activate tacache
+pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu124
+pip install -r requirements.txt
+pip install flash-attn==2.5.8 --no-build-isolation
+```
+
+FlashAttention requires a CUDA toolkit. Clone the Wan source:
+
+```bash
+git clone https://github.com/Wan-Video/Wan2.1.git Wan2.1/Wan2.1
+git -C Wan2.1/Wan2.1 checkout ae487cc653b4a1791fec8201af20d2102a2514f3
+```
+
+For an existing checkout, use `--wan-root`. Download the [checkpoint](https://github.com/Wan-Video/Wan2.1) into `models/Wan2.1-T2V-1.3B/`.
+
+## Evaluation
+
+Optional metrics:
+
+```bash
+python -m pip install -r requirements-eval.txt
+```
+
+Includes LPIPS, PyIQA and CLIP-IQA. [VBench](https://github.com/Vchitect/VBench) and [Q-Align](https://github.com/Q-Future/Q-Align) require separate environments.
+
+## Calibration and Inference
+
+Create `my_calibration_prompts.txt` with one representative prompt per line:
+
+```text
+A red fox walking through a snowy forest.
+A small boat sailing on a calm lake.
+```
+
+Run from the project directory:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode calibrate \
+  --prompts-file my_calibration_prompts.txt \
+  --outdir outputs/wan2_1/calibration
+
+CUDA_VISIBLE_DEVICES=0 python Wan2.1/run.py --mode infer \
+  --prompt 'A small boat on a calm lake at sunrise, cinematic.' \
+  --skip-table outputs/wan2_1/calibration/tacache_skip_timestep.json
+```
+
+Prepare your own calibration data and skip table. Keep model, sampling settings and seed consistent between calibration and inference. Use `--mode baseline` for original inference.
+
+## Citation
 
 If you find this code helpful in your research or work, please consider citing:
 
@@ -89,3 +149,7 @@ If you find this code helpful in your research or work, please consider citing:
       primaryClass={cs.CV},
       url={https://arxiv.org/abs/2605.16789}, 
 }
+
+```
+
+More backbones will be released.

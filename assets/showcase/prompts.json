@@ -1,0 +1,44 @@
+{
+  "description": "Wan2.1 original and TACache video generations.",
+  "seed": 42,
+  "wan_settings": {
+    "task": "t2v-1.3B",
+    "size": "832*480",
+    "frames": 81,
+    "fps": 16,
+    "steps": 50,
+    "cfg": 5,
+    "shift": 5,
+    "solver": "unipc",
+    "table": "Historical showcase table (not included)",
+    "table_sha256": "3a83a7f59eed7cc01917b1046065c95cd345d2815071da40d945849b049f2aac"
+  },
+  "wan": [
+    {
+      "id": "fox",
+      "title": "Snow fox",
+      "prompt": "A red fox walks slowly through a snowy forest, soft morning light, realistic wildlife photography, detailed fur.",
+      "original": {
+        "file": "wan_fox_original.mp4",
+        "preview": "wan_fox_original.gif"
+      },
+      "tacache": {
+        "file": "wan_fox_tacache.mp4",
+        "preview": "wan_fox_tacache.gif"
+      }
+    },
+    {
+      "id": "lighthouse",
+      "title": "At the edge of the sea",
+      "prompt": "A white stone lighthouse stands on a rugged coastal cliff at golden sunset. Turquoise ocean waves roll in and break into white foam against the dark rocks below. The warm light catches drifting sea spray. A slow smooth aerial camera movement reveals the coastline, cinematic landscape footage, realistic natural motion, no text.",
+      "original": {
+        "file": "wan_lighthouse_original.mp4",
+        "preview": "wan_lighthouse_original.gif"
+      },
+      "tacache": {
+        "file": "wan_lighthouse_tacache.mp4",
+        "preview": "wan_lighthouse_tacache.gif"
+      }
+    }
+  ]
+}
